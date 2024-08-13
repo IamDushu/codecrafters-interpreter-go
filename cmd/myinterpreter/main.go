@@ -19,6 +19,8 @@ func main() {
 		"SEMICOLON":   ';',
 		"STAR":        '*',
 	}
+
+	hasErrors := false
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
 	fmt.Fprintln(os.Stderr, "Logs from your program will appear here!")
 
@@ -73,10 +75,16 @@ func main() {
 				fmt.Printf("STAR %v null\n", string(lexemeMap["STAR"]))
 			default:
 				fmt.Fprintf(os.Stderr, "[line %d] Error: Unexpected character: %v\n", lineNumber, string(str))
+				hasErrors = true
 			}
 		}
 		lineNumber++
 	}
 
-	fmt.Println("EOF  null")
+	if hasErrors {
+		fmt.Println("EOF  null")
+		os.Exit(65)
+	} else {
+		fmt.Println("EOF  null")
+	}
 }
