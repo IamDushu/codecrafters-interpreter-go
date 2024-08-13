@@ -39,9 +39,9 @@ func main() {
 	for _, str := range stringContent {
 		switch str {
 		case lexemeMap["LEFT_PAREN"]:
-			fmt.Printf("LEFT_PAREN %v null \n", string(lexemeMap["LEFT_PAREN"]))
+			fmt.Printf("LEFT_PAREN %v null\n", string(lexemeMap["LEFT_PAREN"]))
 		case lexemeMap["RIGHT_PAREN"]:
-			fmt.Printf("RIGHT_PAREN %v null \n", string(lexemeMap["RIGHT_PAREN"]))
+			fmt.Printf("RIGHT_PAREN %v null\n", string(lexemeMap["RIGHT_PAREN"]))
 		}
 	}
 	fmt.Println("EOF  null")
