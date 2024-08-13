@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 )
@@ -36,37 +37,46 @@ func main() {
 	// Uncomment this block to pass the first stage
 	//
 	filename := os.Args[2]
-	fileContents, err := os.ReadFile(filename)
+	file, err := os.Open(filename)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading file: %v\n", err)
 		os.Exit(1)
 	}
+	defer file.Close()
 
-	stringContent := string(fileContents)
+	scanner := bufio.NewScanner(file)
+	lineNumber := 1
 
-	for _, str := range stringContent {
-		switch str {
-		case lexemeMap["LEFT_PAREN"]:
-			fmt.Printf("LEFT_PAREN %v null\n", string(lexemeMap["LEFT_PAREN"]))
-		case lexemeMap["RIGHT_PAREN"]:
-			fmt.Printf("RIGHT_PAREN %v null\n", string(lexemeMap["RIGHT_PAREN"]))
-		case lexemeMap["LEFT_BRACE"]:
-			fmt.Printf("LEFT_BRACE %v null\n", string(lexemeMap["LEFT_BRACE"]))
-		case lexemeMap["RIGHT_BRACE"]:
-			fmt.Printf("RIGHT_BRACE %v null\n", string(lexemeMap["RIGHT_BRACE"]))
-		case lexemeMap["COMMA"]:
-			fmt.Printf("COMMA %v null\n", string(lexemeMap["COMMA"]))
-		case lexemeMap["DOT"]:
-			fmt.Printf("DOT %v null\n", string(lexemeMap["DOT"]))
-		case lexemeMap["MINUS"]:
-			fmt.Printf("MINUS %v null\n", string(lexemeMap["MINUS"]))
-		case lexemeMap["PLUS"]:
-			fmt.Printf("PLUS %v null\n", string(lexemeMap["PLUS"]))
-		case lexemeMap["SEMICOLON"]:
-			fmt.Printf("SEMICOLON %v null\n", string(lexemeMap["SEMICOLON"]))
-		case lexemeMap["STAR"]:
-			fmt.Printf("STAR %v null\n", string(lexemeMap["STAR"]))
+	for scanner.Scan() {
+		lineContent := scanner.Text()
+		for _, str := range lineContent {
+			switch str {
+			case lexemeMap["LEFT_PAREN"]:
+				fmt.Printf("LEFT_PAREN %v null\n", string(lexemeMap["LEFT_PAREN"]))
+			case lexemeMap["RIGHT_PAREN"]:
+				fmt.Printf("RIGHT_PAREN %v null\n", string(lexemeMap["RIGHT_PAREN"]))
+			case lexemeMap["LEFT_BRACE"]:
+				fmt.Printf("LEFT_BRACE %v null\n", string(lexemeMap["LEFT_BRACE"]))
+			case lexemeMap["RIGHT_BRACE"]:
+				fmt.Printf("RIGHT_BRACE %v null\n", string(lexemeMap["RIGHT_BRACE"]))
+			case lexemeMap["COMMA"]:
+				fmt.Printf("COMMA %v null\n", string(lexemeMap["COMMA"]))
+			case lexemeMap["DOT"]:
+				fmt.Printf("DOT %v null\n", string(lexemeMap["DOT"]))
+			case lexemeMap["MINUS"]:
+				fmt.Printf("MINUS %v null\n", string(lexemeMap["MINUS"]))
+			case lexemeMap["PLUS"]:
+				fmt.Printf("PLUS %v null\n", string(lexemeMap["PLUS"]))
+			case lexemeMap["SEMICOLON"]:
+				fmt.Printf("SEMICOLON %v null\n", string(lexemeMap["SEMICOLON"]))
+			case lexemeMap["STAR"]:
+				fmt.Printf("STAR %v null\n", string(lexemeMap["STAR"]))
+			default:
+				fmt.Fprintf(os.Stderr, "[line %d] Error: Unexpected character: %v\n", lineNumber, string(str))
+			}
 		}
+		lineNumber++
 	}
+
 	fmt.Println("EOF  null")
 }
