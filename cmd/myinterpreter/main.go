@@ -6,6 +6,10 @@ import (
 )
 
 func main() {
+	lexemeMap := map[string]rune{
+		"LEFT_PAREN":  '(',
+		"RIGHT_PAREN": ')',
+	}
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
 	fmt.Fprintln(os.Stderr, "Logs from your program will appear here!")
 
@@ -30,9 +34,16 @@ func main() {
 		os.Exit(1)
 	}
 
-	if len(fileContents) > 0 {
-		panic("Scanner not implemented")
-	} else {
-		fmt.Println("EOF  null") // Placeholder, remove this line when implementing the scanner
+	stringContent := string(fileContents)
+
+	for _, str := range stringContent {
+		switch str {
+		case lexemeMap["LEFT_PAREN"]:
+			fmt.Printf("LEFT_PAREN %v null \n", string(lexemeMap["LEFT_PAREN"]))
+		case lexemeMap["RIGHT_PAREN"]:
+			fmt.Printf("RIGHT_PAREN %v null \n", string(lexemeMap["RIGHT_PAREN"]))
+		}
 	}
+	fmt.Println("EOF  null")
+
 }
