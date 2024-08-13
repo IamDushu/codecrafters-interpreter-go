@@ -11,6 +11,12 @@ func main() {
 		"RIGHT_PAREN": ')',
 		"LEFT_BRACE":  '{',
 		"RIGHT_BRACE": '}',
+		"COMMA":       ',',
+		"DOT":         '.',
+		"MINUS":       '-',
+		"PLUS":        '+',
+		"SEMICOLON":   ';',
+		"STAR":        '*',
 	}
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
 	fmt.Fprintln(os.Stderr, "Logs from your program will appear here!")
@@ -48,6 +54,18 @@ func main() {
 			fmt.Printf("LEFT_BRACE %v null\n", string(lexemeMap["LEFT_BRACE"]))
 		case lexemeMap["RIGHT_BRACE"]:
 			fmt.Printf("RIGHT_BRACE %v null\n", string(lexemeMap["RIGHT_BRACE"]))
+		case lexemeMap["COMMA"]:
+			fmt.Printf("COMMA %v null\n", string(lexemeMap["COMMA"]))
+		case lexemeMap["DOT"]:
+			fmt.Printf("DOT %v null\n", string(lexemeMap["DOT"]))
+		case lexemeMap["MINUS"]:
+			fmt.Printf("MINUS %v null\n", string(lexemeMap["MINUS"]))
+		case lexemeMap["PLUS"]:
+			fmt.Printf("PLUS %v null\n", string(lexemeMap["PLUS"]))
+		case lexemeMap["SEMICOLON"]:
+			fmt.Printf("SEMICOLON %v null\n", string(lexemeMap["SEMICOLON"]))
+		case lexemeMap["STAR"]:
+			fmt.Printf("STAR %v null\n", string(lexemeMap["STAR"]))
 		}
 	}
 	fmt.Println("EOF  null")
